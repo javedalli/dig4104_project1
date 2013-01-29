@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Javed Alli - DIG4104 Project 1</title>
+
+	<style type="text/css">
+		body {
+			font-family: StencilStd, Helvetica, sans-serif;
+			background: #282828;
+		}
+		@font-face {
+			font-family: 'StencilStd';
+			src: url('fonts/StencilStd.otf');
+		}
+		#header {
+			height: 100px;
+			width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			color: #A91E23;
+			font-size: 20px;
+		}
+		#content {
+			margin-top: 20px;
+			margin-bottom: 20px;
+			width: 430px;
+			margin-left: auto;
+			margin-right: auto;
+			background-color: #565656;
+		}
+		#div1, #div2, #div3 {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			padding: 10px;
+			border: 1px solid #aaaaaa;
+		}
+		#div4 {
+			height: 100px;
+			width: 430px;
+			text-align: center;
+			vertical-align: 150%;
+			color: #969696;
+		}
+		.clear {
+			clear: both;
+		}
+		#membershipContainer {
+			margin-top: 20px;
+		}
+		.membershipImage {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			padding: 10px;
+			border: 1px solid #aaaaaa;
+			background: no-repeat;
+		}
+		.membershipImage div {
+			height: 102px;
+			width: 102px;		
+		}
+		#membership1 {
+			background-image: url('img/memberships1.png');
+		}
+		#membership2 {
+			background-image: url('img/memberships2.png');
+		}
+		#membership3 {
+			background-image: url('img/memberships3.png');
+		}
+	</style>
+
+
+	<script>
+	function allowDrop(ev) {
+		ev.preventDefault();
+	}
+
+	function drag(ev) {
+		ev.dataTransfer.setData("Text",ev.target.id);
+	}
+
+	function drop(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("Text"); //data is id of planet
+		var f = document.getElementById(data); // f is object of the planet
+		var plan = ev.target.id;
+		var cost = 0;
+
+		ev.target.appendChild(f);
+		var what=ev.target.textContent;
+
+		var string = '';
+
+		if(plan == 'membership1') {
+			cost = 19;
+			if (data == 'drag1') {
+				cost = cost - 5;
+				string = "<p>Congratulations! You have just signed up for 3 months of membership!</p> ";
+				string += "<p>Your first month's fee will be $"+cost+".00</p>";
+			}
+			else if(data == 'drag2') {
+				cost = cost - 10;
+				string = "<p>Congratulations! You have just signed up for 3 months of membership!</p>";
+				string +="<p>Your first month's fee will be $"+cost+".00</p>";
+			}
+			else if(data == 'drag3') {
+				cost = 0;
+				string = "<p>Congratulations! You have just signed up for 3 months of membership!</p>";
+				string +="<p>Your membership is free!</p>";
+			}
+		}
+		else if(plan == 'membership2') {
+			cost = 39;
+			if (data == 'drag1') {
+				cost = cost - 5;
+				string = "<p>Congratulations! You have just signed up for 6 months of membership!</p> ";
+				string += "<p>Your first month's fee will be $"+cost+".00</p>";
+			}
+			else if(data == 'drag2') {
+				cost = cost - 10;
+				string = "<p>Congratulations! You have just signed up for 6 months of membership!</p>";
+				string +="<p>Your first month's fee will be $"+cost+".00</p>";
+			}
+			else if(data == 'drag3') {
+				cost = cost - 25;
+				string = "<p>Congratulations! You have just signed up for 6 months of membership!</p>";
+				string +="<p>Your first month's fee will be $"+cost+".00</p>";
+			}
+		}
+		else if(plan == 'membership3') {
+			cost = 0;
+			if (data == 'drag1') {
+				string = "<p>Congratulations! You have just signed up for 1 year of membership!</p> ";
+				string +="<p>Your membership is free!</p>";
+			}
+			else if(data == 'drag2') {
+				string = "<p>Congratulations! You have just signed up for 1 year of membership!</p>";
+				string +="<p>Your membership is free!</p>";
+			}
+			else if(data == 'drag3') {
+				string = "<p>Congratulations! You have just signed up for 1 year of membership!</p>";
+				string +="<p>Your membership is free!</p>";
+			}
+		}
+
+		document.getElementById("div4").innerHTML=string;
+		
+	}
+
+	</script>
+
+</head>
+
+
+<body>
+<div id='header'>
+	<h1>Vampire Association of Transylflorida</h1>
+</div>
+
+<div id='content'>
+
+	<div id='couponContainer'>
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<img src="img/coupon5.png" draggable="true" ondragstart="drag(event)" id="drag1" width="100" height="100">
+		</div>
+
+		<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" >
+			<img src="img/coupon10.png" draggable="true" ondragstart="drag(event)" id="drag2" width="100" height="100">
+		</div>
+
+		<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<img src="img/coupon25.png" draggable="true" ondragstart="drag(event)" id="drag3" width="100" height="100">
+		</div>
+
+		<div class='clear'></div>
+
+		<div id="div4">Click and drag a coupon to receive a discount!</div>
+
+	</div>
+
+	<div class='clear'></div>
+
+	<div id='membershipContainer'>
+		<div class='membershipImage' ondrop="drop(event)" ondragover="allowDrop(event)">
+			<div id='membership1'></div>
+		</div>
+		<div class='membershipImage' ondrop="drop(event)" ondragover="allowDrop(event)">
+			<div id='membership2'></div>
+		</div>
+		<div class='membershipImage' ondrop="drop(event)" ondragover="allowDrop(event)">
+			<div id='membership3'></div>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>
+
